@@ -1,12 +1,9 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Api from "../services/api";
-import { Badge, Button } from 'react-bootstrap';
 
 export default function List(props) {
   const [dreams, setDreams] = useState([]);
-  const [editing, setEditing] = useState(false);
-  
+    
   async function getAllDreams() {
     const response = await Api.get("/api/dreams");
     setDreams(response.data); 
@@ -136,7 +133,6 @@ export default function List(props) {
         "last_activity_before_bed": "Juggling",
         "date": "2021-06-07"
       })}>Add New Dream</button>
-      
     </div>
   )
 }
