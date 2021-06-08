@@ -1,1 +1,1 @@
-# dream_logger_front_demo
+This was created during my time as a student at Code Chrysalis.  It is a very simple front-end to demonstrate the usability of a simple dreamlogger I created.  It's functionality is currently hard coded and the only user interaction is through clickable buttons.  All buttons are currently functional except for those used for editing entries.

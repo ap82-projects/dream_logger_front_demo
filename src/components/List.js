@@ -6,12 +6,7 @@ import { Badge, Button } from 'react-bootstrap';
 export default function List(props) {
   const [dreams, setDreams] = useState([]);
   const [editing, setEditing] = useState(false);
-  // const 
   
-  // useEffect(() => {
-  //   getAllDreams()
-  // }, []);
-
   async function getAllDreams() {
     const response = await Api.get("/api/dreams");
     setDreams(response.data); 
@@ -69,26 +64,22 @@ export default function List(props) {
 
   async function logDream(dream) {
     const response = await Api.post(`/api/dreams`, dream);
-    // setDreams(response.data);
     getAllDreams();
   }
 
   async function editDream(id, edits) {
     const response = await Api.put(`/api/dreams/${id}`, edits);
-    // setDreams(response.data);
     getAllDreams();
   }
 
   async function deleteDream(id) {
     const response = await Api.delete(`/api/dreams/${id}`);
-    // setDreams(response.data);
     getAllDreams();
   }
 
   return (
     <div id="dream-list">
       <h2>Dreams</h2>
-      {/* <Table striped bordered hover className="text-center"> */}
       <button onClick={() => getAllDreams()}>All Dreams</button>
       <button onClick={() => getNightmares()}>Nightmares</button>
       <button onClick={() => getGoodDreams()}>Good Dreams</button>
@@ -104,7 +95,6 @@ export default function List(props) {
       <table>
         <thead>
           <tr>
-            {/* <th>ID</th> */}
             <th>Date</th>
             <th>Nightmare?</th>
             <th>Lucid?</th>
@@ -119,15 +109,9 @@ export default function List(props) {
             dreams ? dreams.map(dream => {
               return (
                 <tr key={dream.id}>
-                  {/* <td>{summary.title}</td> */}
-                  {/* <td>{formatDate(dreams.date)}</td> */}
                   <td>{dream.date}</td>
-                  <td><Badge variant={dream.was_nightmare ? "danger" : "success"}>
-                    {dream.was_nightmare ? 'Nightmare' : 'Good Dream'}
-                  </Badge></td>
-                  <td><Badge variant={dreams.was_lucid ? "success" : "warning"}>
-                    {dream.was_lucid ? 'Lucid' : 'Not Lucid'}
-                  </Badge></td>
+                  <td>{dream.was_nightmare ? 'Nightmare' : 'Good Dream'}</td>
+                  <td>{dream.was_lucid ? 'Lucid' : 'Not Lucid'}</td>
                   <td>{dream.summary}</td>
                   <td>{dream.description}</td>
                   <td>{dream.last_meal_before_bed}</td>
@@ -135,12 +119,6 @@ export default function List(props) {
                   <td>
                     <button>Edit</button>
                     <button onClick={() => deleteDream(dream.id)}>Delete</button>
-                    {/* <Button size="sm" onClick={() => editTask(task.id)}>Edit</Button>{' '} */}
-                    {/* <Button size="sm" onClick={() => editTask(task.id, task.title, task.description)}>Edit</Button>{' '} */}
-                    {/* <Button size="sm" variant="success">Finished</Button>{' '} */}
-                    {/* <Button size="sm" onClick={() => finishTask(task.id, task.finished)} variant={task.finished ? "warning" : "success"}>{task.finished ? "Resume" : "Finish"}</Button>{' '} */}
-                    {/* <Button size="sm" variant="danger">Remove</Button>{' '} */}
-                    {/* <Button size="sm" onClick={() => removeTask(task.id)} variant="danger">Remove</Button>{' '} */}
                   </td>
                 </tr>
               )
@@ -148,7 +126,6 @@ export default function List(props) {
               : ''
           }
         </tbody>
-      {/* </Table> */}
       </table>
       <button onClick={() => logDream({
         "was_lucid": false,
